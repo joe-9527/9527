@@ -4,7 +4,7 @@
   <groupId>com.zorro</groupId>
   <artifactId>manage</artifactId>
   <packaging>war</packaging>
-  <version>1.0.0</version>
+  <version>1.0.0</version> 
   <name>manage.zorro.com</name>
   
 	<properties> 
@@ -15,7 +15,7 @@
   	<dependency>
 		<groupId>org.springframework</groupId> 
 		<artifactId>spring-webmvc</artifactId> 
-		<version>${spring.version}</version> 
+		<version>${spring.version}</version>
  	</dependency>
  	<dependency>
 		<groupId>org.springframework</groupId> 
@@ -71,6 +71,23 @@
     
   </dependencies>
   <build>
-    <finalName>manage.zorro.com</finalName>
-  </build>
+  		<finalName>manage.zorro.com</finalName>
+		<plugins>
+			<plugin>	
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+			   <artifactId>maven-compiler-plugin</artifactId>
+			   <configuration>
+			      <source>1.8</source>
+			      <target>1.8</target>
+			      <encoding>utf8</encoding>
+			   </configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
