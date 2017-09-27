@@ -96,9 +96,12 @@ public class UserController extends BaseController{
 		user.setLastLoginTime(LocalDateTime.now(ZoneId.systemDefault()));
 		
 		Long uid = userService.registerNewUser(user);
+		if (uid == null) {
+			return new JsonResult(0, ErrorInfoConst.SYSTEM_ERROR);
+		}
 		
-		
-		return new JsonResult(1, "it is a test");
+		Token token = new Token(uid, TokenUtil.generateToken(uid.toString()));
+		return new JsonResult(token);
 	}
 
 	private boolean checkDoRegisterParam(DoRegisterParam param) {

@@ -116,6 +116,9 @@
 			var success = msg.success;
 			
 			if (success == 1) {
+				$.cookie("uid", msg.data.uid);
+				$.cookie("token", msg.data.token);
+				
 				window.location.href = "/manage/index";
 			} else {
 				$("#errorMsg").html(msg.error).show();
