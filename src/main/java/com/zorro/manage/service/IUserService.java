@@ -9,5 +9,7 @@ public interface IUserService {
 	
 	public User getUserById(long uid);
 	
-	public void registerNewUser(User user);
+	public Long registerNewUser(User user);
+
+	public Long checkPassWord(String email, String password);
 }

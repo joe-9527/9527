@@ -6,4 +6,6 @@ public class ErrorInfoConst {
 	public static final String EMAIL_EXIST = "email is already exist, please go to the login page.";
 	
 	public static final String PWD_ILLEGAL = "password and retype password is not equal, please check again.";
+	
+	public static final String PWD_WRONG_OR_EMAIL_NOT_EXIST = "password is wrong or the email is not exist";
 }

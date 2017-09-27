@@ -4,6 +4,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BaseController {
 	@Autowired
-	protected HttpServletRequest request;
+	private HttpServletRequest request;
 	
 	@Autowired
-	protected HttpServletResponse response;
+	private HttpServletResponse response;
 	
 	protected Map<String, String> getRequestParams() {
 		Map<String, String> result = new HashMap<String, String>();
@@ -42,5 +43,15 @@ public class BaseController {
 		}
 		
 		return result;
+	}
+	
+	protected void addCookie(String name, String value, int seconds) {
+		Cookie cookie = new Cookie(name, value);
+		cookie.setMaxAge(seconds);
+		response.addCookie(cookie);
+	}
+	
+	protected void deleteCookie(String name) {
+		addCookie(name, null, 0);
 	}
 }
