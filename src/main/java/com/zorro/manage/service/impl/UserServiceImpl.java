@@ -43,8 +43,16 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public Long checkPassWord(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userMapper.selectByEmail(email);
+		if (user == null) {
+			return null;
+		}
+		
+		if (!user.getPassword().equals(password)) {
+			return null;
+		}
+		
+		return user.getUid();
 	}
 
 }

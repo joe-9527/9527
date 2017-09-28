@@ -114,6 +114,13 @@ public class UserController extends BaseController{
 			return false;
 		}
 		
+		// 长度限制
+		if (param.getNickname().length() < 5 || param.getNickname().length() > 10
+				|| param.getPassword().length() < 8 || param.getPassword().length() > 16
+				|| param.getEmail().length() > 32) {
+			return false;
+		}
+		
 		// 邮箱格式校验
 		boolean emailCheck = Pattern.matches("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+$", param.getEmail());
 		if (!emailCheck) {
