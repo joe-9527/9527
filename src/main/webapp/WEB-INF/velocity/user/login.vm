@@ -104,11 +104,11 @@
   			
   			if (success == 1) {
   				if ($("#rememberCheckbox").is(":checked")) {
-  					$.cookie('uid', msg.data.uid, { expires: 10 });
-  					$.cookie('token', msg.data.token, { expires: 10 });
+  					$.cookie('uid', msg.data.uid, { expires: 10, path: '/' });
+  					$.cookie('token', msg.data.token, { expires: 10, path: '/' });
   				} else {
-  					$.cookie('uid', msg.data.uid);
-  					$.cookie('token', msg.data.token); 
+  					$.cookie('uid', msg.data.uid, {path: '/' });
+  					$.cookie('token', msg.data.token, {path: '/' }); 
   				}
   				
   				window.location.href="/manage/index";

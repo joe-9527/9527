@@ -18,19 +18,25 @@
     from user
     where uid = #{uid,jdbcType=BIGINT}
   </select>
+  <select id="selectByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from user
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
     where uid = #{uid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zorro.manage.model.User">
-    insert into user (uid, nickname, email, 
+  <insert id="insert" parameterType="com.zorro.manage.model.User" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
+    insert into user (nickname, email, 
       password, create_time, last_login_time
       )
-    values (#{uid,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+    values (#{nickname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zorro.manage.model.User">
+  <insert id="insertSelective" parameterType="com.zorro.manage.model.User" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">

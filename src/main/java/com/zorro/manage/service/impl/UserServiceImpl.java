@@ -1,14 +1,22 @@
 package com.zorro.manage.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zorro.manage.dao.UserMapper;
 import com.zorro.manage.model.User;
 import com.zorro.manage.service.IUserService;
-
+@Service
 public class UserServiceImpl implements IUserService{
+	
+	@Autowired
+	UserMapper userMapper;
 
 	@Override
 	public boolean checkEmailIsExist(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		User user = userMapper.selectByEmail(email);
+		
+		return user != null;
 	}
 
 	@Override
@@ -25,9 +33,12 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public Long registerNewUser(User user) {
-		return null;
-		// TODO Auto-generated method stub
+		int insertRow = userMapper.insert(user);
+		if (insertRow == 0) {
+			return null;
+		}
 		
+		return user.getUid();
 	}
 
 	@Override
