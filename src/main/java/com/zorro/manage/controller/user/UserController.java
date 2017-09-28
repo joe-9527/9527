@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +32,7 @@ public class UserController extends BaseController{
 		return new ModelAndView("user/login");
 	}
 	
+	@ResponseBody
 	@RequestMapping("/doLogin")
 	public JsonResult doLogin(DoLoginParam param) {
 		if (checkDoParam(param) == false) {
