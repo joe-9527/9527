@@ -2,6 +2,7 @@ package com.zorro.manage.controller.user;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +93,8 @@ public class UserController extends BaseController{
 		user.setEmail(param.getEmail());
 		user.setNickname(param.getNickname());
 		user.setPassword(param.getPassword());
-		user.setCreateTime(LocalDateTime.now(ZoneId.systemDefault()));
-		user.setLastLoginTime(LocalDateTime.now(ZoneId.systemDefault()));
+		user.setCreateTime(new Date());
+		user.setLastLoginTime(new Date());
 		
 		Long uid = userService.registerNewUser(user);
 		if (uid == null) {
